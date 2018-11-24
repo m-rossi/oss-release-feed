@@ -12,7 +12,7 @@ def main():
     args = parser.parse_args()
 
     req = requests.request(
-        'GET', f'https://api.github.com/users/{args["user"]}/starred')
+        'GET', f'https://api.github.com/users/{args.user}/starred')
     repos = []
     while 'next' in req.links:
         repos += json.loads(req.content)
@@ -46,7 +46,7 @@ def main():
         if lang is not None:
             opml.append(lang_xml)
     xml = ET.ElementTree(opml)
-    xml.write(args['output'])
+    xml.write(args.output)
 
 
 if __name__ == '__main__':
